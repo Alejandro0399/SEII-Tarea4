@@ -40,10 +40,15 @@
 #include "MK66F18.h"
 #include "fsl_debug_console.h"
 #include "fsl_pit.h"
+#include "reloj.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
+#define PIT_LED_HANDLER PIT0_IRQHandler
+#define PIT_IRQ_ID PIT0_IRQn
+#define PIT_SOURCE_CLOCK CLOCK_GetFreq(kCLOCK_BusClk)
 
+volatile bool pitIsrFlag = false;
 /*
  * @brief   Application entry point.
  */
@@ -59,29 +64,6 @@
      __DSB();
  }
 
-void segundero(void)
-{
-  static uint8_t segundos = 0;
-  segundos++;
-  if(alarma_seg == segundos)
-  {
-    //generar una notificacion
-  }
-  if(LIMITE_SEGUNDOS == segundos)
-  {
-    segundos = 0;
-    minutero();
-  }
-}
-void minutero(void)
-{
-  static uint8_t minutos = 0;
-  if(LIMITE_MINUTOS == minutos)
-  {
-    minutos = 0;
-    horas();
-  }
-}
 
 int main(void) {
 
@@ -95,8 +77,17 @@ int main(void) {
     /* Init FSL debug console. */
     BOARD_InitDebugConsole();
 #endif
+    PIT_GetDefaultConfig(&pitConfig);
+    PIT_Init(PIT, &pitConfig);
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(1000000U, PIT_SOURCE_CLOCK));
+    /* Enable timer interrupts for channel 0 */
+    PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
+    /* Enable at the NVIC */
+    EnableIRQ(PIT_IRQ_ID);
+    /* Start channel 0 */
+    PRINTF("\r\nStarting channel No.0 ...");
+    PIT_StartTimer(PIT, kPIT_Chnl_0);
 
-    PRINTF("Hello World\n");
 
     /* Force the counter to be placed into memory. */
     volatile static int i = 0 ;
