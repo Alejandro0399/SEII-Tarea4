@@ -1,7 +1,8 @@
 # Tarea4
 ## Alejandro Gudiño Gallegos		Eduardo Ethandrake Castillo Pulido
 ## Funcionamiento General
-El funcionamiento en general es el generar una interrupcion utilizando el PIT, esta interrupcion se genera a cada seegundo. En ese segundo se imprime la hora y se aumenta en uno el segundo, y en caso de ser necesario el minutero y horas. Tambien se llama a la funcion Alarma, la cual detecta si se encendieron las banderas para desplegar o no el mensaje de ALARM
+El funcionamiento en general es el generar una interrupcion utilizando el PIT, esta interrupcion se genera a cada seegundo. En ese segundo se imprime la hora y se aumenta en uno el segundo, y en caso de ser necesario el minutero y horas. Tambien se llama a la funcion Alarma, la cual detecta si se encendieron las banderas para desplegar o no el mensaje de ALARM.
+Para esta implementacion, la alarma se establecio a las 13:00:10 y la hora de inicio esta a las 12:59:45.
 ## Control de Segundos
 Esta fucnion se ejecuta cada segundo, aumentando uno cada vez que se llama. Esta funcion es llamada en el PIT_handler, lo cual quiere decir que cada que ocurre una interrupcion del PIT. Al aumentar el segundo se hace una comparacion para ver si el valor tiene que volver a 0 o no. Tambien se genera una bandera cuando los segundos son iguales a los propuestos en la alarma
 ```
