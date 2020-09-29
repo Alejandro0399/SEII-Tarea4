@@ -42,3 +42,13 @@ void horas(void)
     hora = 0;
   }
 }
+
+void alarm(void)
+{
+
+}
+
+void imprimir_hora(void)
+{
+  
+}
