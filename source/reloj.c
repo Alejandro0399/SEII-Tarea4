@@ -16,6 +16,10 @@ void segundero(void)
     //generar una notificacion
     g_seg_flag = TRUE;
   }
+  else
+  {
+    g_seg_flag = FALSE;
+  }
   if(LIMITE_SEGUNDOS == g_segundos)
   {
     g_segundos = 0;
@@ -29,6 +33,10 @@ void minutero(void)
   {
     //generar una notificacion
     g_min_flag =TRUE;
+  }
+  else
+  {
+    g_min_flag = FALSE;
   }
   if(LIMITE_MINUTOS == g_minutos)
   {
@@ -44,6 +52,10 @@ void horas(void)
     //generar una notificacion
     g_hr_flag = TRUE;
   }
+  else
+  {
+    g_hr_flag = FALSE;
+  }
   if(LIMITE_HORAS == g_horas)
   {
     g_horas = 0;
@@ -52,10 +64,13 @@ void horas(void)
 
 void alarm(void)
 {
-
+  if(g_seg_flag && g_min_flag && g_hr_flag)
+  {
+    PRINTF("DESPIERTAAAAAAAAAA \n");
+  }
 }
 
 void imprimir_hora(void)
 {
-
+  PRITNF("%d:%d:%d\n",g_segundos,g_minutos,g_horas);
 }
