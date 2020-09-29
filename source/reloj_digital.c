@@ -57,6 +57,9 @@ volatile bool pitIsrFlag = false;
      /* Clear interrupt flag.*/
      PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
      pitIsrFlag = true;
+     segundero();
+     imprimir_hora();
+     alarm();
      /* Added for, and affects, all PIT handlers. For CPU clock which is much larger than the IP bus clock,
       * CPU can run out of the interrupt handler before the interrupt flag being cleared, resulting in the
       * CPU's entering the handler again and again. Adding DSB can prevent the issue from happening.
@@ -85,7 +88,6 @@ int main(void) {
     /* Enable at the NVIC */
     EnableIRQ(PIT_IRQ_ID);
     /* Start channel 0 */
-    PRINTF("\r\nStarting channel No.0 ...");
     PIT_StartTimer(PIT, kPIT_Chnl_0);
 
 
