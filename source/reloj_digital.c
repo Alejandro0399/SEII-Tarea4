@@ -75,7 +75,12 @@ void segundero(void)
 }
 void minutero(void)
 {
-  static uint8_t
+  static uint8_t minutos = 0;
+  if(LIMITE_MINUTOS == minutos)
+  {
+    minutos = 0;
+    horas();
+  }
 }
 
 int main(void) {
