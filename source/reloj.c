@@ -72,5 +72,5 @@ void alarm(void)
 
 void imprimir_hora(void)
 {
-  PRITNF("%d:%d:%d\n",g_segundos,g_minutos,g_horas);
+  PRITNF("%d:%d:%d\n",g_horas,g_minutos,g_segundos);
 }
