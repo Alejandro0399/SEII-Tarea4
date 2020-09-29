@@ -1,6 +1,6 @@
 # Tarea4
-##Alejandro Gudiño Gallegos
-##Eduardo Ethandrake Castillo Pulido
+## Alejandro Gudiño Gallegos
+## Eduardo Ethandrake Castillo Pulido
 
 ```
 void segundero(void)
@@ -41,7 +41,8 @@ void minutero(void)
     g_min_flag = FALSE;
   }
 
-}```
+}
+```
 ```
 void horas(void)
 {
@@ -60,7 +61,8 @@ void horas(void)
     g_hr_flag = FALSE;
   }
 
-}```
+}
+```
 ```
 void alarm(void)
 {
@@ -68,7 +70,8 @@ void alarm(void)
   {
     PRINTF("\r\nALARM\n");
   }
-}```
+}
+```
 ```
 void imprimir_hora(void)
 {
@@ -88,4 +91,5 @@ void imprimir_hora(void)
 	  PRINTF("0");
   }
   PRINTF("%d",g_segundos);
-}```
+}
+```
