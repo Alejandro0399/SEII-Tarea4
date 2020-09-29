@@ -1,45 +1,45 @@
 #include "reloj.h"
 
+uint8_t g_segundos = 0;
+uint8_t g_minutos = 0;
+uint8_t g_horas = 0;
 
 void segundero(void)
 {
-  static uint8_t segundos = 0;
-  segundos++;
-  if(alarma_seg == segundos)
+  g_segundos++;
+  if(ALARMA_SEGUNDOS == g_segundos)
   {
     //generar una notificacion
   }
-  if(LIMITE_SEGUNDOS == segundos)
+  if(LIMITE_SEGUNDOS == g_segundos)
   {
-    segundos = 0;
+    g_segundos = 0;
     minutero();
   }
 }
 
 void minutero(void)
 {
-  static uint8_t minutos = 0;
-  if(alarma_min == minutos)
+  if(ALARMA_MINUTOS == g_minutos)
   {
     //generar una notificacion
   }
-  if(LIMITE_MINUTOS == minutos)
+  if(LIMITE_MINUTOS == g_minutos)
   {
-    minutos = 0;
+    g_minutos = 0;
     horas();
   }
 }
 
 void horas(void)
 {
-  static uint8_t hora = 0;
-  if(alarma_hr == hora)
+  if(ALARMA_HORAS == g_horas)
   {
     //generar una notificacion
   }
-  if(LIMITE_HORAS == hora)
+  if(LIMITE_HORAS == g_horas)
   {
-    hora = 0;
+    g_horas = 0;
   }
 }
 
@@ -50,5 +50,5 @@ void alarm(void)
 
 void imprimir_hora(void)
 {
-  
+
 }
