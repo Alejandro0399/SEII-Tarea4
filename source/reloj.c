@@ -78,17 +78,17 @@ void alarm(void)
 void imprimir_hora(void)
 {
   PRINTF("\e[1;1H\e[2J");
-  if(g_horas < 10)
+  if(g_horas < ZERO_NOT)
   {
 	  PRINTF("\r0");
   }
   PRINTF("%d:",g_horas);
-  if(g_minutos < 10)
+  if(g_minutos < ZERO_NOT)
   {
 	  PRINTF("0");
   }
   PRINTF("%d:",g_minutos);
-  if(g_segundos < 10)
+  if(g_segundos < ZERO_NOT)
   {
 	  PRINTF("0");
   }

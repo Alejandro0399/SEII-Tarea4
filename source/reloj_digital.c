@@ -47,6 +47,7 @@
 #define PIT_LED_HANDLER PIT0_IRQHandler
 #define PIT_IRQ_ID PIT0_IRQn
 #define PIT_SOURCE_CLOCK CLOCK_GetFreq(kCLOCK_BusClk)
+#define SEGUNDO 1000000U
 
 volatile bool pitIsrFlag = false;
 /*
@@ -82,7 +83,7 @@ int main(void) {
 #endif
     PIT_GetDefaultConfig(&pitConfig);
     PIT_Init(PIT, &pitConfig);
-    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(1000000U, PIT_SOURCE_CLOCK));
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(SEGUNDO, PIT_SOURCE_CLOCK));
     /* Enable timer interrupts for channel 0 */
     PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
     /* Enable at the NVIC */
