@@ -1,6 +1,6 @@
 # Tarea4
-##Alejandro Gudiño Gallegos
-##Eduardo Ethandrake Castillo Pulido
+## Alejandro Gudiño Gallegos
+## Eduardo Ethandrake Castillo Pulido
 
 ```
 void segundero(void)
