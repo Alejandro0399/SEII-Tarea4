@@ -10,7 +10,7 @@
 
 
 #include "stdint.h"
-#include "MK64F12.h"
+#include "MK66F18.h"
 
 #define SYSTEM_CLOCK (21000000U)
 

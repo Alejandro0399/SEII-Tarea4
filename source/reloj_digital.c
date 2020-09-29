@@ -27,7 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
+
 /**
  * @file    reloj_digital.c
  * @brief   Application entry point.
@@ -39,6 +39,7 @@
 #include "clock_config.h"
 #include "MK66F18.h"
 #include "fsl_debug_console.h"
+#include "fsl_pit.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
@@ -46,8 +47,41 @@
 /*
  * @brief   Application entry point.
  */
+ void PIT_LED_HANDLER(void)
+ {
+     /* Clear interrupt flag.*/
+     PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
+     pitIsrFlag = true;
+     /* Added for, and affects, all PIT handlers. For CPU clock which is much larger than the IP bus clock,
+      * CPU can run out of the interrupt handler before the interrupt flag being cleared, resulting in the
+      * CPU's entering the handler again and again. Adding DSB can prevent the issue from happening.
+      */
+     __DSB();
+ }
+
+void segundero(void)
+{
+  static uint8_t segundos = 0;
+  segundos++;
+  if(alarma_seg == segundos)
+  {
+    //generar una notificacion
+  }
+  if(LIMITE_SEGUNDOS == segundos)
+  {
+    segundos = 0;
+    minutero();
+  }
+}
+void minutero(void)
+{
+  static uint8_t
+}
+
 int main(void) {
 
+    /* Structure of initialize PIT */
+    pit_config_t pitConfig;
   	/* Init board hardware. */
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
