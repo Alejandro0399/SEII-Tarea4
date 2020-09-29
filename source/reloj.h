@@ -12,6 +12,8 @@
 #define ALARMA_MINUTOS 20U
 #define ALARMA_HORAS 13U
 
+typedef enum {FALSE,TRUE} boolean_t;
+
 void segundero(void);
 void minutero(void);
 void horas(void);
